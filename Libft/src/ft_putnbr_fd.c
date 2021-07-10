@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 20:46:34 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/04/04 20:48:14 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/03 19:02:23 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_putnbr_fd(int nb, int fd)
 		ft_putnbr_fd(nn / 10, fd);
 		ft_putchar_fd((nn % 10) + '0', fd);
 	}
-	else if (nn >= 0 && nn <= 9)
+	else if (nn <= 9)
 	{
 		ft_putchar_fd(nn + '0', fd);
 	}
