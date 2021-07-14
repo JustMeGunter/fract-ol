@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   mandelbrotSet.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/14 22:35:22 by acrucesp         ###   ########.fr       */
+/*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
+/*   Updated: 2021/07/14 21:53:18 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
-# include <stdlib.h>
-# include <math.h>
-# include <mlx.h>
-# define WIDTH 1920
-# define HEIGHT 1200
+#include <fractol.h>
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
-typedef struct s_params {
-	int		shftd_x;
-	int		shftd_y;
-	float	scld_x;
-	float	scld_y;	
-}				t_params;
+int mandel(double Px, double Py)
+{
+	double x0;
+	double y0;
+	double x;
+	double x_t;
+	double y;
+	int i;
+	int m_i;
 
-int	mandel(double Px, double Py);
-
-#endif
+	x = 0;
+	y = 0;
+	x_t = 0;
+	i = 0;
+	m_i = 1000;
+	x0 = (Px - 990) * 0.0020833;
+	y0 = (-Py + 600) * 0.003333;
+	while (x*x + y*y <= 2*2 && i < m_i)
+	{
+		x_t = x*x - y*y + x0;
+		y = 2*x*y + y0;
+		x = x_t;
+		i++;	
+	}
+	return (i);
+}

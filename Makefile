@@ -6,14 +6,14 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/07/03 21:41:24 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/07/14 20:55:24 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DEBUG 				=
 
 SRC_DIR				=	src/
-SRC					=	main.c
+SRC					=	main.c mandelbrotSet.c
 
 OBJ_DIR				=	obj/
 OBJ					= 	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))
@@ -48,7 +48,7 @@ $(OBJ_DIR):
 $(NAME):	libmlx.a Libft/libft.a $(OBJ) 
 ifeq ($(UNAME_S), Linux)
 	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_linux -lXext -lX11 -lm -lz\
-		$(OBJ) Libft/libft.a libmlx.a -o $@ 
+		$(MAIN) $(OBJ) Libft/libft.a libmlx.a -o $@ 
 else
 	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_mac -framework OpenGL -framework AppKit\
 		$(OBJ) Libft/libft.a libmlx.a -o $@ 

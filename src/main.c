@@ -6,19 +6,11 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/10 21:32:33 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/14 22:36:49 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
-
-typedef	struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -28,45 +20,38 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void test_mandel(double Px, double Py, t_data img)
+void	get_params(int	x, int y, t_params *params)
 {
-	int color = 0x00FF0000; 
-	double x0 = (Px/480)-2;
-	double y0 = (Py/270)-2;
-	double x = 0;
-	double x_t = 0;
-	double y  = 0;
-	int i = 0;
-	int m_i = 100;
-	while (x*x + y*y <= 2*2 && i < m_i)
-	{
-		x_t = x*x - y*y + x0;
-		y = 2*x*y + y0;
-		x = x_t;
-		i++;	
-	}
-	if (i > 50)
-		color = 0x00000000;
-	my_mlx_pixel_put(&img, Px, Py, color);
+	y = 0;
+	params->shftd_x =  x / 2;
 }
 
 int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
+	t_params	params;
 	int x = 0;
 	int y = 0;
 	t_data	img;
+	int color = 0x00FF0000; 
+	int ret;
 
+	get_params(WIDTH, HEIGHT, &params);
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Wololo!!!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Wololo!!!");
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	while (x < 1920)
+	while (x < WIDTH)
 	{
-		while(y < 1080)
+		while(y < HEIGHT)
 		{
-			test_mandel(x,y,img);
+			ret = mandel(x,y);
+			if (ret > 500)
+				color = 0x00000000;
+			else
+				color = 0x00FF0000; 
+			my_mlx_pixel_put(&img, x, y, color);
 			y++;
 		}
 		y = 0;
