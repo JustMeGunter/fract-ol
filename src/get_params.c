@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrotSet.c                                    :+:      :+:    :+:   */
+/*   get_params.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/15 22:35:34 by acrucesp         ###   ########.fr       */
+/*   Created: 2021/07/15 20:22:12 by acrucesp          #+#    #+#             */
+/*   Updated: 2021/07/15 21:33:02 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-int mandel(double Px, double Py, t_sfsc *sfsc)
+void	get_sfsc(int x, int y, t_sfsc *sfsc)
 {
-	t_cplx cplx;
-
-	ft_memset(&cplx, 0, sizeof(t_cplx));
-	cplx.xC = (Px - sfsc->shftd_x) * sfsc->scld_x;
-	cplx.yC = (-Py + sfsc->shftd_y) * sfsc->scld_y;
-	while (cplx.x * cplx.x + cplx.y * cplx.y <= 4 && cplx.i < M_ITER)
-	{
-		cplx.t_x = cplx.x * cplx.x - cplx.y * cplx.y + cplx.xC;
-		cplx.y = 2 * cplx.x * cplx.y + cplx.yC;
-		cplx.x = cplx.t_x;
-		cplx.i++;
-	}
-	return (cplx.i);
+	sfsc->shftd_x =  x / 2.0;
+	sfsc->shftd_y =  y / 2.0;
+	sfsc->scld_x = 4.0 / x;
+	sfsc->scld_y = 4.0 / y;
 }

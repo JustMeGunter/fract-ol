@@ -6,14 +6,14 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/07/14 20:55:24 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/07/15 22:35:33 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DEBUG 				=
 
 SRC_DIR				=	src/
-SRC					=	main.c mandelbrotSet.c
+SRC					=	main.c mandelbrotSet.c get_params.c
 
 OBJ_DIR				=	obj/
 OBJ					= 	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))
@@ -27,7 +27,7 @@ CC					=	gcc
 
 RM					= 	rm -f
 
-CFLAGS				= 	-Wall -Wextra -Werror -O3 $(DEBUG) 
+CFLAGS				= 	-Wall -Wextra -Werror -O2 $(DEBUG) 
 
 UNAME_S := $(shell uname -s)
 

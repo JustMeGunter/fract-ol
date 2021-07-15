@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/14 22:36:49 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:35:30 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,20 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	get_params(int	x, int y, t_params *params)
-{
-	y = 0;
-	params->shftd_x =  x / 2;
-}
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_params	params;
+	void		*mlx;
+	void		*mlx_win;
+	t_sfsc		sfsc;
 	int x = 0;
 	int y = 0;
 	t_data	img;
 	int color = 0x00FF0000; 
 	int ret;
 
-	get_params(WIDTH, HEIGHT, &params);
+	ft_memset(&sfsc, 0, sizeof(t_sfsc));
+	get_sfsc(WIDTH, HEIGHT, &sfsc);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Wololo!!!");
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
@@ -46,8 +42,8 @@ int	main(void)
 	{
 		while(y < HEIGHT)
 		{
-			ret = mandel(x,y);
-			if (ret > 500)
+			ret = mandel(x,y,&sfsc);
+			if (ret > 50)
 				color = 0x00000000;
 			else
 				color = 0x00FF0000; 
