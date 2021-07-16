@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/16 22:35:44 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/16 22:57:48 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,13 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 //add to libft
 int	is_prime(int n)
 {
-	int	c;
-	int	aux;
+	int	i;
 
-	c = 0;
-	aux = n;
-	while(n)
-	{
-		if (aux / n == 0) 	
-			c++;
-		n--;
-	}
-	if (c > 2)
-		return (0);
-	else
-		return (1);
+	i = 1;
+	while(++i < n)
+		if (n % i == 0) 	
+			return (0);
+	return (1);
 }
 
 int n_escaled(int n)
