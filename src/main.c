@@ -6,11 +6,13 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/15 22:35:30 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/16 22:35:44 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
+#include <stdio.h>
+#include <unistd.h>
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -20,6 +22,42 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+//add to libft
+int	is_prime(int n)
+{
+	int	c;
+	int	aux;
+
+	c = 0;
+	aux = n;
+	while(n)
+	{
+		if (aux / n == 0) 	
+			c++;
+		n--;
+	}
+	if (c > 2)
+		return (0);
+	else
+		return (1);
+}
+
+int n_escaled(int n)
+{
+	return ((255 * n) / M_ITER);
+}
+
+int	set_color(int n)
+{
+	if (n % 2 == 0)
+		color = (n_escaled(n) << 16) | (127 << 8) | 127;	
+	else
+	{
+		if(is_prime(ret))
+			printf("%i is prime", ret);
+	}
+	return (color);
+}
 
 int	main(void)
 {
@@ -29,7 +67,7 @@ int	main(void)
 	int x = 0;
 	int y = 0;
 	t_data	img;
-	int color = 0x00FF0000; 
+	int color; 
 	int ret;
 
 	ft_memset(&sfsc, 0, sizeof(t_sfsc));
@@ -42,11 +80,10 @@ int	main(void)
 	{
 		while(y < HEIGHT)
 		{
+			color = 0; 
 			ret = mandel(x,y,&sfsc);
-			if (ret > 50)
-				color = 0x00000000;
-			else
-				color = 0x00FF0000; 
+			if (ret > 1)
+				color = set_color(ret);
 			my_mlx_pixel_put(&img, x, y, color);
 			y++;
 		}
