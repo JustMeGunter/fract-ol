@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/15 22:35:32 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/18 20:37:11 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@
 # define HEIGHT 1200
 # define M_ITER 1000
 
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
 typedef struct	s_data {
 	void	*img;
+	void	*win;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;

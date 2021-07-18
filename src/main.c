@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/16 22:57:48 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/18 20:52:08 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,55 @@ int	is_prime(int n)
 	return (1);
 }
 
-int n_escaled(int n)
+unsigned int set_color(int red, int grn, int blue)
 {
-	return ((255 * n) / M_ITER);
+	return red + (grn << 8) + (blue << 16);
 }
 
-int	set_color(int n)
+unsigned int rgb(double n)
 {
-	if (n % 2 == 0)
-		color = (n_escaled(n) << 16) | (127 << 8) | 127;	
+	double ratio;
+	int normalized;
+	int x;
+	unsigned int color;
+	
+	ratio = n / M_ITER;
+	normalized = (int)(ratio * 256 * 3);
+	x = normalized % 256;
+	if ((int)n % 2 == 0)
+		color = set_color(0, 255 - x, 255);	
 	else
 	{
-		if(is_prime(ret))
-			printf("%i is prime", ret);
+		if(is_prime(n))
+			color = set_color(x, 0, 255);	
+		else
+			color = set_color(255, 0, 255 - x);	
 	}
 	return (color);
 }
 
+int	key_hook(int keycode, t_vars *vars)
+{
+	(void)vars;
+	printf("key: %i\n", keycode);
+	return (1);
+}
+
 int	main(void)
 {
-	void		*mlx;
-	void		*mlx_win;
+	t_vars	vars;
 	t_sfsc		sfsc;
 	int x = 0;
 	int y = 0;
 	t_data	img;
-	int color; 
-	int ret;
+	unsigned int color; 
+	double ret;
 
 	ft_memset(&sfsc, 0, sizeof(t_sfsc));
 	get_sfsc(WIDTH, HEIGHT, &sfsc);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Wololo!!!");
-	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Wololo!!!");
+	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	while (x < WIDTH)
 	{
@@ -75,13 +91,14 @@ int	main(void)
 			color = 0; 
 			ret = mandel(x,y,&sfsc);
 			if (ret > 1)
-				color = set_color(ret);
+				color = rgb(ret);
 			my_mlx_pixel_put(&img, x, y, color);
 			y++;
 		}
 		y = 0;
 		x++;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+	mlx_mouse_hook(vars.win, key_hook, &vars);
+	mlx_loop(vars.mlx);
 }
