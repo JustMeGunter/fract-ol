@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/18 20:52:08 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/20 21:25:41 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ int	key_hook(int keycode, t_vars *vars)
 	return (1);
 }
 
+int	fncTest(int x, int y)
+{
+	printf("%i x ,%i y\n", x, y);
+	return (0);
+}
+
 int	main(void)
 {
 	t_vars	vars;
@@ -77,7 +83,7 @@ int	main(void)
 	t_data	img;
 	unsigned int color; 
 	double ret;
-
+	// vars and data in the same struct
 	ft_memset(&sfsc, 0, sizeof(t_sfsc));
 	get_sfsc(WIDTH, HEIGHT, &sfsc);
 	vars.mlx = mlx_init();
@@ -100,5 +106,6 @@ int	main(void)
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_mouse_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars.win, 6, (1L<<6),fncTest, &vars);
 	mlx_loop(vars.mlx);
 }
