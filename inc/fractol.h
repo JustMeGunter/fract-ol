@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/18 20:37:11 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/21 21:48:43 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,29 @@
 # define HEIGHT 1200
 # define M_ITER 1000
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
-
+/******************************************************************************/
+/* s_data is the struct that has data form manipulate the window and the image*/
+/* img contains an identifier of the image									  */
+/* win contains an identifier of the window									  */
+/* mlx contais an idenfier of the X-Window network service					  */
+/* addr cointais an adress of the image where is stored						  */
+/* bits_per_pixel contains a int filled with the numbers of bits necesarys to */
+/*	represent a color														  */
+/* size_line contains the number bytes used to store one line of the image in */
+/*	memmory																	  */
+/* endian contains a number that tells the format of byte					  */
+/******************************************************************************/
 typedef struct	s_data {
 	void	*img;
 	void	*win;
+	void	*mlx;
 	char	*addr;
 	int		bits_per_pixel;
-	int		line_length;
+	int		size_line;
 	int		endian;
 }				t_data;
 
+/*struct to operate shifted and scaled an axis */
 typedef struct s_sfsc {
 	float	shftd_x;
 	float	shftd_y;
@@ -41,6 +50,7 @@ typedef struct s_sfsc {
 	float	scld_y;	
 }				t_sfsc;
 
+/*struct to operate with two complex numbers*/
 typedef struct s_cplx {
 	double	x;
 	double	y;

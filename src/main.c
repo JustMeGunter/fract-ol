@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/20 21:25:41 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/21 22:04:11 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char *dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->size_line+ x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -61,9 +61,9 @@ unsigned int rgb(double n)
 	return (color);
 }
 
-int	key_hook(int keycode, t_vars *vars)
+int	key_hook(int keycode, t_data *data)
 {
-	(void)vars;
+	(void)data;
 	printf("key: %i\n", keycode);
 	return (1);
 }
@@ -76,20 +76,18 @@ int	fncTest(int x, int y)
 
 int	main(void)
 {
-	t_vars	vars;
 	t_sfsc		sfsc;
 	int x = 0;
 	int y = 0;
-	t_data	img;
+	t_data	data;
 	unsigned int color; 
 	double ret;
-	// vars and data in the same struct
 	ft_memset(&sfsc, 0, sizeof(t_sfsc));
 	get_sfsc(WIDTH, HEIGHT, &sfsc);
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Wololo!!!");
-	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Wololo!!!");
+	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.size_line, &data.endian);
 	while (x < WIDTH)
 	{
 		while(y < HEIGHT)
@@ -98,14 +96,14 @@ int	main(void)
 			ret = mandel(x,y,&sfsc);
 			if (ret > 1)
 				color = rgb(ret);
-			my_mlx_pixel_put(&img, x, y, color);
+			my_mlx_pixel_put(&data, x, y, color);
 			y++;
 		}
 		y = 0;
 		x++;
 	}
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	mlx_mouse_hook(vars.win, key_hook, &vars);
-	mlx_hook(vars.win, 6, (1L<<6),fncTest, &vars);
-	mlx_loop(vars.mlx);
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	mlx_mouse_hook(data.win, key_hook, &data);
+	mlx_hook(data.win, 6, (1L<<6),fncTest, &data);
+	mlx_loop(data.mlx);
 }
