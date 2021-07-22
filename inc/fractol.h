@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/21 21:48:43 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/22 20:28:01 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ typedef struct s_cplx {
 	int		i;
 }				t_cplx;
 
-int		mandel(double Px, double Py, t_sfsc *sfsc);
-void	get_sfsc(int x, int y, t_sfsc *sfsc);
+int				mandel(double Px, double Py, t_sfsc *sfsc);
+void			get_sfsc(int x, int y, t_sfsc *sfsc);
+unsigned int 	rgb(double n);
+void			draw_mandel(t_sfsc *sfsc, t_data *data);
 
 #endif

@@ -6,14 +6,14 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/07/15 22:35:33 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/07/22 20:15:11 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DEBUG 				=
 
 SRC_DIR				=	src/
-SRC					=	main.c mandelbrotSet.c get_params.c
+SRC					=	main.c mandelbrotSet.c get_params.c get_colors.c
 
 OBJ_DIR				=	obj/
 OBJ					= 	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))
@@ -45,6 +45,7 @@ $(OBJ): | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
+#fix recompile objects Libft
 $(NAME):	libmlx.a Libft/libft.a $(OBJ) 
 ifeq ($(UNAME_S), Linux)
 	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_linux -lXext -lX11 -lm -lz\
@@ -54,7 +55,7 @@ else
 		$(OBJ) Libft/libft.a libmlx.a -o $@ 
 endif
 
-Libft/libft.a:
+Libft/libft.a: 		 
 	$(MAKE) -C Libft
 
 libmlx.a:
