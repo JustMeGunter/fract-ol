@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/24 02:10:13 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/24 21:37:55 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <libft.h>
 # define WIDTH 1920
 # define HEIGHT 1200
-# define M_ITER 100
+# define M_ITER 500
 
 /*struct to operate shifted and scaled an axis */
 typedef struct s_sfsc {
@@ -53,6 +53,8 @@ typedef struct	s_data {
 	int		endian;
 	int		x;
 	int		y;
+	double	x_z;
+	double	y_z;
 	t_sfsc	sfsc;
 }				t_data;
 
@@ -69,7 +71,7 @@ typedef struct s_cplx {
 int				mandel(double Px, double Py, t_data *data);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 unsigned int 	rgb(double n);
-void			draw_mandel(t_data *data, int k);
-void			get_controls(int k, t_data *data);
+void			draw_mandel(t_data *data);
+void			get_controls(int k, t_data *data, char from);
 
 #endif
