@@ -6,14 +6,14 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/07/22 20:15:11 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/07/23 21:59:17 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DEBUG 				=
 
 SRC_DIR				=	src/
-SRC					=	main.c mandelbrotSet.c get_params.c get_colors.c
+SRC					=	main.c mandelbrotSet.c get_params.c get_colors.c controls.c
 
 OBJ_DIR				=	obj/
 OBJ					= 	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))

@@ -6,19 +6,28 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/22 20:28:01 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/24 02:10:13 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include <stdlib.h>
+# include <stdio.h>
 # include <math.h>
 # include <mlx.h>
 # include <libft.h>
 # define WIDTH 1920
 # define HEIGHT 1200
-# define M_ITER 1000
+# define M_ITER 100
+
+/*struct to operate shifted and scaled an axis */
+typedef struct s_sfsc {
+	float	shftd_x;
+	float	shftd_y;
+	float	scld_x;
+	float	scld_y;	
+}				t_sfsc;
 
 /******************************************************************************/
 /* s_data is the struct that has data form manipulate the window and the image*/
@@ -31,6 +40,8 @@
 /* size_line contains the number bytes used to store one line of the image in */
 /*	memmory																	  */
 /* endian contains a number that tells the format of byte					  */
+/* x contains coord to use in controls										  */
+/* y contains coord to use in controls										  */
 /******************************************************************************/
 typedef struct	s_data {
 	void	*img;
@@ -40,15 +51,10 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+	int		x;
+	int		y;
+	t_sfsc	sfsc;
 }				t_data;
-
-/*struct to operate shifted and scaled an axis */
-typedef struct s_sfsc {
-	float	shftd_x;
-	float	shftd_y;
-	float	scld_x;
-	float	scld_y;	
-}				t_sfsc;
 
 /*struct to operate with two complex numbers*/
 typedef struct s_cplx {
@@ -60,9 +66,10 @@ typedef struct s_cplx {
 	int		i;
 }				t_cplx;
 
-int				mandel(double Px, double Py, t_sfsc *sfsc);
+int				mandel(double Px, double Py, t_data *data);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 unsigned int 	rgb(double n);
-void			draw_mandel(t_sfsc *sfsc, t_data *data);
+void			draw_mandel(t_data *data, int k);
+void			get_controls(int k, t_data *data);
 
 #endif
