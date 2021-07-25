@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/25 06:08:14 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:45:32 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_mandel(t_data *data, int k, char t)
 	y = 0;
 	get_controls(k, data, t);
 	//if (t == 'k')
-	mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
+//	mlx_put_image_to_window(data->mlx, data->win, data->img, data->x, data->y);
 	while (x < WIDTH)
 	{
 		while(y < HEIGHT)

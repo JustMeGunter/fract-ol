@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/25 06:15:58 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:56:32 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 int	key_hook(int keycode, int x, int y, t_data *data)
 {
-	//if (keycode == 4)
-	//{
-	//	data->x += x;
-	//	data->y += y;
-	//}
-	//else if (keycode == 5)
-	//{
-	//	data->x -= x;
-	//	data->y -= y;
-	//}
+	printf("before x:%lli , y:%lli\n", data->x, data->y);
+	if (keycode == 4)
+	{
+		data->x += (WIDTH * 0.5) - x;
+		data->y += (HEIGHT * 0.5) - y;
+	}
+	else if (keycode == 5)
+	{
+		data->x = (WIDTH  + x) *  0.5;
+		data->y += (HEIGHT * 0.5) - y;
+	}
+	printf("middle x:%lli , y:%lli\n", data->x, data->y);
 	draw_mandel(data, keycode, 'm');
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	printf("after x:%lli , y:%lli\n", data->x, data->y);
 	printf("key pass: %i\n x:%i y:%i\n", keycode, x, y);
 	return (1);
 }
