@@ -6,26 +6,34 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/24 21:54:54 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/25 06:15:58 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-int	key_hook(int keycode, t_data *data)
+int	key_hook(int keycode, int x, int y, t_data *data)
 {
-	get_controls(keycode, data, 'm');
-	draw_mandel(data);
+	//if (keycode == 4)
+	//{
+	//	data->x += x;
+	//	data->y += y;
+	//}
+	//else if (keycode == 5)
+	//{
+	//	data->x -= x;
+	//	data->y -= y;
+	//}
+	draw_mandel(data, keycode, 'm');
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	printf("key pass: %i\n", keycode);
+	printf("key pass: %i\n x:%i y:%i\n", keycode, x, y);
 	return (1);
 }
 
 int	keyboard_hook(int keycode, t_data *data)
 {
 	printf("key: %i\n", keycode);
-	get_controls(keycode, data, 'k');
-	draw_mandel(data);
+	draw_mandel(data, keycode, 'k');
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return(1);
 }
@@ -40,16 +48,16 @@ int	main(void)
 {
 	t_data	data;
 
+	data.x = 0;
+	data.y = 0;
 	ft_memset(&data, 0, sizeof(t_data));
-	data.x_z = 0.00;
-	data.y_z = 0.00;
 	get_sfsc(WIDTH, HEIGHT, &data.sfsc);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Wololo!!!");
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.size_line, &data.endian);
 	
-	draw_mandel(&data);
+	draw_mandel(&data, 0, 0);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 
 	mlx_key_hook(data.win, keyboard_hook, &data);

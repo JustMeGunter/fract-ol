@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/24 21:49:27 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/25 06:50:34 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,33 @@ void	get_controls (int k, t_data *data, char from)
 	if (from == 'k')
 	{
 		if (k == 126)
-			data->y -= 10;
+			data->y -= 100;
 		else if (k == 125)
-			data->y += 10;
+			data->y += 100;
 		else if (k == 123)
-			data->x -= 10;
+			data->x -= 100;
 		else if(k == 124)
-			data->x += 10;
+			data->x += 100;
 	}
-	else
+	if (from == 'm')	
 	{
 		if (k == 5)	
 		{
-			data->x_z += 0.001;
-			data->y_z += 0.001;
+			data->sfsc.scld_x += data->sfsc.scld_x * 2.0;
+			data->sfsc.scld_y += data->sfsc.scld_y * 2.0;
+			data->x *= 0.5;
+			data->y *= 0.5;
 		}
 		else if (k == 4)	
 		{
-			data->x_z -= 0.001;
-			data->y_z -= 0.001;
+			data->sfsc.scld_x -= data->sfsc.scld_x * 0.5;
+			data->sfsc.scld_y -= data->sfsc.scld_y * 0.5;
+			data->x *= 2;
+			data->y *= 2;
+			data->x += 280;
+			data->y -= 0;
 		}
 		printf("pass");
 	}
-	printf("in x:%i, y:%i", data->x, data->y);
+	//printf("in x:%llu, y:%llu \ndata: %lf %lf\n", data->x, data->y, data->sfsc.scld_x,data->sfsc.scld_y);
 }

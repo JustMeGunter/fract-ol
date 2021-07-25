@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/24 21:37:55 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/25 05:19:47 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <math.h>
 # include <mlx.h>
 # include <libft.h>
-# define WIDTH 1920
-# define HEIGHT 1200
-# define M_ITER 500
+# define WIDTH 400 
+# define HEIGHT 400 
+# define M_ITER 100
 
 /*struct to operate shifted and scaled an axis */
 typedef struct s_sfsc {
@@ -51,27 +51,25 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-	int		x;
-	int		y;
-	double	x_z;
-	double	y_z;
+	long long int x;
+	long long int y;
 	t_sfsc	sfsc;
 }				t_data;
 
 /*struct to operate with two complex numbers*/
 typedef struct s_cplx {
-	double	x;
-	double	y;
-	double	xC;
-	double	yC;
-	double	t_x;
+	double x;
+	double y;
+	double xC;
+	double yC;
+	double t_x;
 	int		i;
 }				t_cplx;
 
 int				mandel(double Px, double Py, t_data *data);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 unsigned int 	rgb(double n);
-void			draw_mandel(t_data *data);
+void			draw_mandel(t_data *data, int keycode, char t);
 void			get_controls(int k, t_data *data, char from);
 
 #endif

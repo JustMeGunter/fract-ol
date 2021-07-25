@@ -6,7 +6,7 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/07/23 21:59:17 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/07/25 04:10:42 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CC					=	gcc
 
 RM					= 	rm -f
 
-CFLAGS				= 	-Wall -Wextra -Werror -O2 $(DEBUG) 
+CFLAGS				= 	-Wall -Wextra -Werror -O2 $(DEBUG) -fsanitize=address
 
 UNAME_S := $(shell uname -s)
 
