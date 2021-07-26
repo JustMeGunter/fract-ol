@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/25 05:19:47 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/26 20:26:43 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # define WIDTH 400 
 # define HEIGHT 400 
 # define M_ITER 100
+/* Arrows directions */
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+/* Escape key */
+# define ESC 53
 
 /*struct to operate shifted and scaled an axis */
 typedef struct s_sfsc {
