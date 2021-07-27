@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/26 20:26:43 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/27 21:40:59 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_sfsc {
 /* endian contains a number that tells the format of byte					  */
 /* x contains coord to use in controls										  */
 /* y contains coord to use in controls										  */
+//add new params
 /******************************************************************************/
 typedef struct	s_data {
 	void	*img;
@@ -60,10 +61,14 @@ typedef struct	s_data {
 	int		endian;
 	long long int x;
 	long long int y;
+	double	Cx;
+	double	Cy;
+	void 	(*fractal)(struct s_data *data, char k, char t);
 	t_sfsc	sfsc;
 }				t_data;
 
 /*struct to operate with two complex numbers*/
+//build struc for complex numbers
 typedef struct s_cplx {
 	double x;
 	double y;
@@ -73,10 +78,13 @@ typedef struct s_cplx {
 	int		i;
 }				t_cplx;
 
+//add fnc for operations with complex numbers
 int				mandel(double Px, double Py, t_data *data);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 unsigned int 	rgb(double n);
-void			draw_mandel(t_data *data, int keycode, char t);
+void			draw_mandelbrot(t_data *data, char keycode, char t);
+void			draw_julia(t_data *data, char keycode, char t);
 void			get_controls(int k, t_data *data, char from);
+void			parse_args(int argc, char **argv, t_data *data);
 
 #endif

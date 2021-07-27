@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/26 19:11:32 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/27 21:12:52 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_mandel(t_data *data, int k, char t)
+void	draw_mandelbrot(t_data *data, char k, char t)
 {
 	int x;
 	int y;
