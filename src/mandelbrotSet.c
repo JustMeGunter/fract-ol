@@ -6,18 +6,32 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/27 21:12:52 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/28 22:28:09 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void reset_values(t_data *data, t_ncomplex *Z, int color, int x, int y)
 {
-	char *dst;
+	color = 0x00000000; 
+	data->i = 0;
+	data->C.x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
+	data->C.y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
+	ft_memset(&Z, 0, sizeof(t_ncomplex));
+}
 
-	dst = data->addr + (y * data->size_line+ x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+/* Zn = Zn_1^2 + C */ 
+int mandelbrot(t_ncomplex *Z, t_data *data)
+{
+	if (Z->x * Z->x + Z->y * Z->y <= 4 && data->i < M_ITER)
+	{
+		pow_complex(*Z, Z);
+		add_complex(*Z, data->C, Z); 
+		data->i++;
+		return (mandelbrot(Z, data));
+	}
+	return (data->i);
 }
 
 void	draw_mandelbrot(t_data *data, char k, char t)
@@ -26,6 +40,7 @@ void	draw_mandelbrot(t_data *data, char k, char t)
 	int y;
 	int color;
 	int ret;
+	t_ncomplex Z;
 
 	x = 0;
 	y = 0;
@@ -34,8 +49,8 @@ void	draw_mandelbrot(t_data *data, char k, char t)
 	{
 		while(y < HEIGHT)
 		{
-			color = 0x00000000; 
-			ret = mandel(x,y,data);
+			reset_values(data, &Z, color, x, y);
+			ret = mandelbrot(&Z ,data);
 			if (ret > 1)
 				color = rgb(ret);
 			my_mlx_pixel_put(data, x, y, color);
@@ -46,19 +61,3 @@ void	draw_mandelbrot(t_data *data, char k, char t)
 	}
 }
 
-int mandel(double Px, double Py, t_data *data)
-{
-	t_cplx cplx;
-
-	ft_memset(&cplx, 0, sizeof(t_cplx));
-	cplx.xC = (Px - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
-	cplx.yC = (-Py + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
-	while (cplx.x * cplx.x + cplx.y * cplx.y <= 4 && cplx.i < M_ITER)
-	{
-		cplx.t_x = cplx.x * cplx.x - cplx.y * cplx.y + cplx.xC;
-		cplx.y = 2 * cplx.x * cplx.y + cplx.yC;
-		cplx.x = cplx.t_x;
-		cplx.i++;
-	}
-	return (cplx.i);
-}

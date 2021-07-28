@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/27 21:40:59 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/28 21:14:29 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct s_sfsc {
 	float	scld_y;	
 }				t_sfsc;
 
+/* struc complex number */
+typedef struct s_ncomplex {
+	double	x;
+	double	y;
+}				t_ncomplex;
+
 /******************************************************************************/
 /* s_data is the struct that has data form manipulate the window and the image*/
 /* img contains an identifier of the image									  */
@@ -59,24 +65,13 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+	int		i;
 	long long int x;
 	long long int y;
-	double	Cx;
-	double	Cy;
 	void 	(*fractal)(struct s_data *data, char k, char t);
 	t_sfsc	sfsc;
+	t_ncomplex C;
 }				t_data;
-
-/*struct to operate with two complex numbers*/
-//build struc for complex numbers
-typedef struct s_cplx {
-	double x;
-	double y;
-	double xC;
-	double yC;
-	double t_x;
-	int		i;
-}				t_cplx;
 
 //add fnc for operations with complex numbers
 int				mandel(double Px, double Py, t_data *data);
@@ -86,5 +81,8 @@ void			draw_mandelbrot(t_data *data, char keycode, char t);
 void			draw_julia(t_data *data, char keycode, char t);
 void			get_controls(int k, t_data *data, char from);
 void			parse_args(int argc, char **argv, t_data *data);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			add_complex(t_ncomplex n1, t_ncomplex n2, t_ncomplex *res);
+void			pow_complex(t_ncomplex n1, t_ncomplex *res);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 19:16:59 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/27 22:26:55 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/28 21:08:46 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-int	fractal_fnc(char **argv, t_data *data)
+int	select_fractal_fnc(char **argv, t_data *data)
 {
 	if (argv[1] && !ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1])))
 		data->fractal = draw_mandelbrot;
@@ -25,7 +25,7 @@ int	fractal_fnc(char **argv, t_data *data)
 
 void parse_args(int argc, char **argv, t_data *data)
 {
-	if (argc < 2 || fractal_fnc(argv, data))
+	if (argc < 2 || select_fractal_fnc(argv, data))
 	{
 		printf("Enter one of the following sets:\nmandelbrot\njulia ");
 		printf("\n**Can be followed by fractal parameters x y\n");
@@ -33,7 +33,7 @@ void parse_args(int argc, char **argv, t_data *data)
 	}
 	else if (argc > 2)
 	{
-		data->Cx = ft_atoi(argv[2]);
-		data->Cy = ft_atoi(argv[3]);
+		data->C.x = ft_atoi(argv[2]);
+		data->C.y = ft_atoi(argv[3]);
 	}
 }
