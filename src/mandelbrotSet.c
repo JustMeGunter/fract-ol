@@ -6,32 +6,35 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/28 22:28:09 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/30 23:38:26 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void reset_values(t_data *data, t_ncomplex *Z, int color, int x, int y)
+void reset_values(t_data *data, t_ncomplex *Z, int *color, int x, int y)
 {
-	color = 0x00000000; 
+	*color = 0x00000000; 
 	data->i = 0;
 	data->C.x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
 	data->C.y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
-	ft_memset(&Z, 0, sizeof(t_ncomplex));
+	ft_memset(Z, 0, sizeof(t_ncomplex));
 }
 
 /* Zn = Zn_1^2 + C */ 
-int mandelbrot(t_ncomplex *Z, t_data *data)
+int mandelbrot(t_ncomplex *Z, t_ncomplex C, int i) 
 {
-	if (Z->x * Z->x + Z->y * Z->y <= 4 && data->i < M_ITER)
+	long double t;
+
+	if (Z->x * Z->x + Z->y * Z->y <= 4 && i < M_ITER)
 	{
-		pow_complex(*Z, Z);
-		add_complex(*Z, data->C, Z); 
-		data->i++;
-		return (mandelbrot(Z, data));
+		t = Z->x * Z->x - Z->y * Z->y + C.x;
+		Z->y = 2 * Z->x * Z->y + C.y;
+		Z->x = t;
+		i++;
+		return (mandelbrot(Z, C, i));
 	}
-	return (data->i);
+	return (i);
 }
 
 void	draw_mandelbrot(t_data *data, char k, char t)
@@ -49,8 +52,8 @@ void	draw_mandelbrot(t_data *data, char k, char t)
 	{
 		while(y < HEIGHT)
 		{
-			reset_values(data, &Z, color, x, y);
-			ret = mandelbrot(&Z ,data);
+			reset_values(data, &Z, &color, x, y);
+			ret = mandelbrot(&Z, data->C, 0);
 			if (ret > 1)
 				color = rgb(ret);
 			my_mlx_pixel_put(data, x, y, color);

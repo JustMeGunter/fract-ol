@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/28 21:14:29 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/30 23:59:22 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <libft.h>
 # define WIDTH 400 
 # define HEIGHT 400 
-# define M_ITER 100
+# define M_ITER 1000
 /* Arrows directions */
 # define UP 126
 # define DOWN 125
@@ -30,16 +30,16 @@
 
 /*struct to operate shifted and scaled an axis */
 typedef struct s_sfsc {
-	float	shftd_x;
-	float	shftd_y;
-	float	scld_x;
-	float	scld_y;	
+	long double	shftd_x;
+	long double	shftd_y;
+	long double	scld_x;
+	long double	scld_y;	
 }				t_sfsc;
 
 /* struc complex number */
 typedef struct s_ncomplex {
-	double	x;
-	double	y;
+	long double	x;
+	long double	y;
 }				t_ncomplex;
 
 /******************************************************************************/
@@ -55,7 +55,9 @@ typedef struct s_ncomplex {
 /* endian contains a number that tells the format of byte					  */
 /* x contains coord to use in controls										  */
 /* y contains coord to use in controls										  */
-//add new params
+/* (* fractal) the function of the fractal type								  */
+/* sfsc has the shifted and scaled of the iamge 							  */
+/* C complex number for fractal sets										  */
 /******************************************************************************/
 typedef struct	s_data {
 	void	*img;
@@ -65,7 +67,6 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-	int		i;
 	long long int x;
 	long long int y;
 	void 	(*fractal)(struct s_data *data, char k, char t);
@@ -73,16 +74,15 @@ typedef struct	s_data {
 	t_ncomplex C;
 }				t_data;
 
-//add fnc for operations with complex numbers
-int				mandel(double Px, double Py, t_data *data);
+int				mandelbrot(t_ncomplex *Z, t_ncomplex C, int i);
+void			draw_mandelbrot(t_data *data, char keycode, char t);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 unsigned int 	rgb(double n);
-void			draw_mandelbrot(t_data *data, char keycode, char t);
 void			draw_julia(t_data *data, char keycode, char t);
 void			get_controls(int k, t_data *data, char from);
 void			parse_args(int argc, char **argv, t_data *data);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void			add_complex(t_ncomplex n1, t_ncomplex n2, t_ncomplex *res);
-void			pow_complex(t_ncomplex n1, t_ncomplex *res);
+void			add_complex(t_ncomplex n1, t_ncomplex n2, t_ncomplex *ret);
+void			pow_complex(t_ncomplex n1, t_ncomplex *ret);
 
 #endif
