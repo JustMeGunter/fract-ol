@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/26 20:29:12 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/31 22:39:26 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,28 @@ void	arrows_move(t_data *data, int k)
 
 void	zoom(t_data *data, int k)
 {
-		if (k == 5)	
+	long long int x_t;
+
+	if (k == 5)	
+	{
+		data->sfsc.scld_x = data->sfsc.scld_x * 2.0;
+		data->sfsc.scld_y = data->sfsc.scld_y * 2.0;
+		data->x *= 0.5;
+		data->y *= 0.5;
+	}
+	else if (k == 4)	
+	{
+		x_t = data->x * 2.0L;	
+		if ((data->x >= 0.0L && x_t >= 0.0L) || (data->x <= 0.0L && x_t <= 0.0L))
 		{
-			data->sfsc.scld_x = data->sfsc.scld_x * 2.0;
-			data->sfsc.scld_y = data->sfsc.scld_y * 2.0;
-			data->x *= 0.5;
-			data->y *= 0.5;
-		}
-		else if (k == 4)	
-		{
+			printf("%lli\n", x_t);
+			printf("data %lli\n", data->x);
 			data->sfsc.scld_x = data->sfsc.scld_x * 0.5;
 			data->sfsc.scld_y = data->sfsc.scld_y * 0.5;
-			data->x *= 2;
-			data->y *= 2;
+			data->x *= 2.0;
+			data->y *= 2.0;
 		}
+	}
 }
 
 void	get_controls (int k, t_data *data, char from)

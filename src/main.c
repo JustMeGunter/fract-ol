@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/27 22:11:32 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:01:12 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,8 @@
 
 int	key_hook(int keycode, int x, int y, t_data *data)
 {
-	if (keycode == 4)
-	{
-		data->x += (WIDTH * 0.5) - x;
-		data->y += (HEIGHT * 0.5) - y;
-	}
-	else if (keycode == 5)
-	{
-		data->x += (WIDTH * 0.5) - x;
-		data->y += (HEIGHT * 0.5) - y;
-	}
+	data->x += (WIDTH * 0.5) - x;
+	data->y += (HEIGHT * 0.5) - y;
 	data->fractal(data, keycode, 'm');
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (1);
@@ -33,7 +25,7 @@ int	keyboard_hook(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		exit(0);
-	data->fractal(data, keycode, 'k');
+		data->fractal(data, keycode, 'k');
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return(1);
 }
