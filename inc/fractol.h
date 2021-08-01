@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/31 19:45:02 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/01 17:46:07 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,18 @@
 # define WIDTH 400 
 # define HEIGHT 400 
 # define M_ITER 1000
-/* Arrows directions */
+/* .h file of defines */
 # define UP 126
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
-/* Escape key */
+# define Z_IN 27
+# define Z_OUT 24
+# define C_IN 8
+# define C_OUT 7
 # define ESC 53
+# define K 107
+# define M 109
 
 /*struct to operate shifted and scaled an axis */
 typedef struct s_sfsc {
@@ -67,22 +72,24 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+	int		m_iter;
 	long long int x;
 	long long int y;
-	void 	(*fractal)(struct s_data *data, char k, char t);
+	void 	(*fractal)(struct s_data *data, int keycode);
 	t_sfsc	sfsc;
 	t_ncomplex C;
 }				t_data;
 
-int				mandelbrot(t_ncomplex *Z, t_ncomplex C, int i);
-void			draw_mandelbrot(t_data *data, char keycode, char t);
+int				mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter);
+void			draw_mandelbrot(t_data *data, int keycode);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 unsigned int 	rgb(double n);
-void			draw_julia(t_data *data, char keycode, char t);
+void			draw_julia(t_data *data, int keycode);
 void			get_controls(int k, t_data *data, char from);
 void			parse_args(int argc, char **argv, t_data *data);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			add_complex(t_ncomplex n1, t_ncomplex n2, t_ncomplex *ret);
 void			pow_complex(t_ncomplex n1, t_ncomplex *ret);
+void			reset_values(t_data *data, t_ncomplex *Z, int *color, int x, int y);
 
 #endif

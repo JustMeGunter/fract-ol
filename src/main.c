@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/31 21:01:12 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/01 16:41:26 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	keyboard_hook(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		exit(0);
-		data->fractal(data, keycode, 'k');
+	printf("key: %i \n", keycode);
+	data->fractal(data, keycode, 'k');
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return(1);
 }
@@ -37,8 +38,9 @@ int	main(int argc, char **argv)
 	ft_memset(&data, 0, sizeof(t_data));
 	parse_args(argc, argv, &data);
 	get_sfsc(WIDTH, HEIGHT, &data.sfsc);
+	data.m_iter = M_ITER;
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Wololo!!!");
+	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "fract-ol");
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.size_line, &data.endian);

@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/31 22:39:26 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/01 17:06:56 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ void	zoom(t_data *data, int k)
 	else if (k == 4)	
 	{
 		x_t = data->x * 2.0L;	
-		if ((data->x >= 0.0L && x_t >= 0.0L) || (data->x <= 0.0L && x_t <= 0.0L))
+		if ((data->x >= 0.0L && x_t >= 0.0L) ||
+				(data->x <= 0.0L && x_t <= 0.0L))
 		{
-			printf("%lli\n", x_t);
-			printf("data %lli\n", data->x);
 			data->sfsc.scld_x = data->sfsc.scld_x * 0.5;
 			data->sfsc.scld_y = data->sfsc.scld_y * 0.5;
 			data->x *= 2.0;
@@ -50,10 +49,10 @@ void	zoom(t_data *data, int k)
 	}
 }
 
-void	get_controls (int k, t_data *data, char from)
+void	get_controls (int keycode, t_data *data, char from)
 {
 	if (from == 'k')
-		arrows_move(data, k);
+		arrows_move(data, keycode);
 	if (from == 'm')	
-		zoom(data, k);
+		zoom(data, keycode);
 }
