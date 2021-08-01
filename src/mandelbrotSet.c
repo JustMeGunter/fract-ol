@@ -6,12 +6,11 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/01 17:47:16 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/01 17:50:44 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
-
 
 /* Zn = Zn_1^2 + C */ 
 int mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter) 
@@ -39,7 +38,7 @@ void	draw_mandelbrot(t_data *data, int keycode)
 
 	x = 0;
 	y = 0;
-	get_controls(keycode, data, from);
+	get_controls(keycode, data);
 	while (x < WIDTH)
 	{
 		while(y < HEIGHT)

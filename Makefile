@@ -6,7 +6,7 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/07/31 21:24:19 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/08/01 18:34:03 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ DEBUG 				=
 SRC_DIR				=	src/
 SRC					=	main.c mandelbrotSet.c get_params.c get_colors.c\
 						get_controls.c parse_args.c juliaSet.c my_mlx_pixel_put.c\
+						reset_values.c
 
 OBJ_DIR				=	obj/
 OBJ					= 	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))

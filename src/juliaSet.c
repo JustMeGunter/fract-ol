@@ -6,17 +6,16 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 21:13:36 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/27 21:16:19 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/01 18:33:28 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void draw_julia(t_data *data, char k, char t)
+void draw_julia(t_data *data, int keycode)
 {
 	(void)data;
-	(void)k;
-	(void)t;
+	(void)keycode;
 	printf("exit");
 	exit(0);
 }

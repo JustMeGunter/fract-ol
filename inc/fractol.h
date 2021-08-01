@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/01 17:46:07 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/01 18:31:49 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 # define HEIGHT 400 
 # define M_ITER 1000
 /* .h file of defines */
+# define COLORS 1
 # define UP 126
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
-# define Z_IN 27
-# define Z_OUT 24
+# define Z_IN 4
+# define Z_OUT 5
 # define C_IN 8
 # define C_OUT 7
 # define ESC 53
@@ -85,7 +86,7 @@ void			draw_mandelbrot(t_data *data, int keycode);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 unsigned int 	rgb(double n);
 void			draw_julia(t_data *data, int keycode);
-void			get_controls(int k, t_data *data, char from);
+void			get_controls(int k, t_data *data);
 void			parse_args(int argc, char **argv, t_data *data);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			add_complex(t_ncomplex n1, t_ncomplex n2, t_ncomplex *ret);
