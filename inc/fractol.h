@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/03 11:44:32 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 13:30:39 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,15 @@ typedef struct	s_data {
 	long long int x;
 	long long int y;
 	void 	(*fractal)(struct s_data *data, int keycode);
+	int		*colors;
 	t_sfsc	sfsc;
 	t_ncomplex C;
 }				t_data;
 
-int				mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter);
+//int				mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter);
 void			draw_mandelbrot(t_data *data, int keycode);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
-unsigned int 	rgb(double n);
+unsigned int 	rgb(int m_iter, double n);
 void			draw_julia(t_data *data, int keycode);
 void			get_controls(int k, t_data *data);
 void			parse_args(int argc, char **argv, t_data *data);
@@ -100,5 +101,6 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			add_complex(t_ncomplex n1, t_ncomplex n2, t_ncomplex *ret);
 void			pow_complex(t_ncomplex n1, t_ncomplex *ret);
 void			reset_values(t_data *data, t_ncomplex *Z, int *color, int x, int y);
+void			get_colors(t_data *data);
 
 #endif

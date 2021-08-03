@@ -6,14 +6,14 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/01 17:50:44 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 13:42:39 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
 /* Zn = Zn_1^2 + C */ 
-int mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter) 
+static int mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter) 
 {
 	long double t;
 
@@ -45,8 +45,7 @@ void	draw_mandelbrot(t_data *data, int keycode)
 		{
 			reset_values(data, &Z, &color, x, y);
 			ret = mandelbrot(&Z, data->C, 0, data->m_iter);
-			color = rgb(ret);
-			my_mlx_pixel_put(data, x, y, color);
+			my_mlx_pixel_put(data, x, y, data->colors[ret - 1]);
 			y++;
 		}
 		y = 0;

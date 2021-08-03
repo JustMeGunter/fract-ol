@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/03 12:12:25 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 13:32:46 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 	parse_args(argc, argv, &data);
 	get_sfsc(WIDTH, HEIGHT, &data.sfsc);
 	data.m_iter = M_ITER;
+	get_colors(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "fract-ol");
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);

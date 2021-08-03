@@ -6,35 +6,40 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 19:23:35 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/22 19:36:19 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 13:39:15 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-unsigned int set_color(int red, int grn, int blue)
+unsigned int rgb(int m_iter, double value)
 {
-	return red + (grn << 8) + (blue << 16);
+	float 	min;
+	float 	max;
+	float 	ratio;
+	int		color;
+
+	min = 0;
+	max = (float)m_iter;
+	ratio = 2.0 * (value - min) / (max - min);	
+	color = (int)(fmax(0, 255 * (ratio - 1))) +
+		(int)(255 - (fmax(0, 255 * (ratio - 1))) -
+		(fmax(0, 255 * (ratio - 1)))) +
+		(int)(fmax(0, 255 * (ratio - 1)));
+	return (color);
 }
 
-unsigned int rgb(double n)
+void	get_colors(t_data *data)
 {
-	double ratio;
-	int normalized;
-	int x;
-	unsigned int color;
-	
-	ratio = n / M_ITER;
-	normalized = (int)(ratio * 256 * 3);
-	x = normalized % 256;
-	if ((int)n % 2 == 0)
-		color = set_color(0, 255 - x, 255);	
-	else
+	int i;
+
+	i = 0;
+	data->colors = malloc(sizeof(int) * data->m_iter);
+	if (!data->colors)
+		exit(0);
+	while (i < data->m_iter)
 	{
-		if(ft_is_prime(n))
-			color = set_color(x, 0, 255);	
-		else
-			color = set_color(255, 0, 255 - x);	
+		data->colors[i] = rgb(data->m_iter, i);
+		i++;
 	}
-	return (color);
 }
