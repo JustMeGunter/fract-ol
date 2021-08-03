@@ -6,62 +6,76 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/01 19:22:03 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 12:14:19 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void	arrows_move(t_data *data, int k)
+static void	arrows_move(t_data *data, int k)
 {
-	if ((k & DOWN) == DOWN)
+	if (k == (K_MASK | DOWN))
 		data->y -= 100;
-	else if ((k & UP) == UP)
+	else if (k == (K_MASK | UP))
 		data->y += 100;
-	else if ((k & LEFT) == LEFT)
+	else if (k == (K_MASK | LEFT))
 		data->x += 100;
-	else if((k & RIGHT) == RIGHT)
+	else if (k == (K_MASK | RIGHT))
 		data->x -= 100;
 }
 
-void	shift_colors(t_data *data, int keycode)
+static void	shift_colors(t_data *data, int k)
 {
 	(void)data;	
-	(void)keycode;
-	printf("colors");
+	(void)k;
+	printf("colors\n");
 }
-void	zoom(t_data *data, int k)
+
+static void	change_iter(t_data *data, int k)
+{
+	if ((k == (K_MASK | ITER_MASK | I_IN)) && data->m_iter < 5000)
+		data->m_iter += 50;
+	if ((k == (K_MASK | ITER_MASK | I_OUT)) && data->m_iter > 100) 
+		data->m_iter -= 50;
+}
+
+static void	zoom(t_data *data, int k)
 {
 	long long int x_t;
+	long long int y_t;
 
-	if ((k & Z_OUT) == Z_OUT)	
+	if (k == (M_MASK | Z_OUT))	
 	{
 		data->sfsc.scld_x = data->sfsc.scld_x * 2.0;
 		data->sfsc.scld_y = data->sfsc.scld_y * 2.0;
 		data->x *= 0.5;
 		data->y *= 0.5;
 	}
-	else if ((k & Z_IN) == Z_IN)	
+	else if (k == (M_MASK | Z_IN))	
 	{
-		x_t = data->x * 2.0L;	
-		if ((data->x >= 0.0L && x_t >= 0.0L) ||
-				(data->x <= 0.0L && x_t <= 0.0L))
-		{
-			data->sfsc.scld_x = data->sfsc.scld_x * 0.5;
-			data->sfsc.scld_y = data->sfsc.scld_y * 0.5;
-			data->x *= 2.0;
-			data->y *= 2.0;
-		}
+		x_t = data->x * 2;	
+		y_t = data->y * 2;	
+		if (((data->x >= 0 && x_t >= 0) ||
+				(data->x <= 0 && x_t <= 0)) &&
+					((data->y >= 0 && y_t >= 0) ||
+						(data->y <= 0 && y_t <= 0 )))
+			{
+				data->sfsc.scld_y = data->sfsc.scld_y * 0.5;
+				data->y *= 2;
+				data->sfsc.scld_x = data->sfsc.scld_x * 0.5;
+				data->x *= 2;
+			}
 	}
 }
 
 void	get_controls (int keycode, t_data *data)
 {
-	printf("%i\n", keycode);
-	if ((keycode & K << 8) == K << 8 && (keycode & COLORS << 16) == COLORS << 16)
+	if ((keycode & (K_MASK | COLORS_MASK)) == (K_MASK | COLORS_MASK))
 		shift_colors(data, keycode);
-	else if ((keycode & K << 8) == K << 8) 
+	else if ((keycode & (K_MASK | ITER_MASK)) == (K_MASK | ITER_MASK))
+		change_iter(data, keycode);
+	else if ((keycode & K_MASK) == K_MASK) 
 		arrows_move(data, keycode);
-	else if ((keycode & M << 8) == M << 8) 
+	else if ((keycode & M_MASK) == M_MASK) 
 		zoom(data, keycode);
 }

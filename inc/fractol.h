@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/01 18:31:49 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 11:44:32 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@
 # include <libft.h>
 # define WIDTH 400 
 # define HEIGHT 400 
-# define M_ITER 1000
+# define M_ITER 100
 /* .h file of defines */
 # define COLORS 1
-# define UP 126
+# define COLORS_MASK 65536
+# define ITER 2
+# define ITER_MASK 131072 
+# define UP 126 
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
@@ -30,9 +33,14 @@
 # define Z_OUT 5
 # define C_IN 8
 # define C_OUT 7
+# define I_IN 24
+# define I_OUT 27
 # define ESC 53
 # define K 107
+# define K_MASK 27392
 # define M 109
+# define M_MASK 27904
+# define MASK 0xFFFFFFFF 
 
 /*struct to operate shifted and scaled an axis */
 typedef struct s_sfsc {

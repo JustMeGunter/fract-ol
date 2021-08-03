@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/01 19:28:26 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 12:12:25 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	keyboard_hook(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		exit(0);
-	printf("key 1: %i \n", keycode);
-	if (((keycode & C_IN) == C_IN) && ((keycode & C_OUT) == C_OUT))
+	if (((keycode & MASK) == C_IN) || ((keycode & MASK) == C_OUT))
 		keycode |= COLORS << 16; 
-	printf("key 2: %i \n", keycode);
+	else if (((keycode & MASK) == I_IN) || ((keycode & MASK) == I_OUT))
+		keycode |= ITER << 16; 
 	data->fractal(data, keycode | K << 8);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return(1);
