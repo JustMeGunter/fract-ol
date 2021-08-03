@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/03 13:42:39 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 18:06:49 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	draw_mandelbrot(t_data *data, int keycode)
 		{
 			reset_values(data, &Z, &color, x, y);
 			ret = mandelbrot(&Z, data->C, 0, data->m_iter);
-			my_mlx_pixel_put(data, x, y, data->colors[ret - 1]);
+			color = data->colors[ret - 1];
+			my_mlx_pixel_put(data, x, y, color);
 			y++;
 		}
 		y = 0;

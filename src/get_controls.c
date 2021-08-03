@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/03 12:14:19 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 21:06:54 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,20 @@ static void	arrows_move(t_data *data, int k)
 
 static void	shift_colors(t_data *data, int k)
 {
-	(void)data;	
-	(void)k;
-	printf("colors\n");
+	if (data->c_s > 5 && (k & C_OUT) == C_OUT)
+		data->c_s -= 5;
+	if (data->c_s < 250 && (k & C_IN) == C_IN)
+		data->c_s += 5;
 }
 
 static void	change_iter(t_data *data, int k)
 {
+	free(data->colors);
 	if ((k == (K_MASK | ITER_MASK | I_IN)) && data->m_iter < 5000)
 		data->m_iter += 50;
 	if ((k == (K_MASK | ITER_MASK | I_OUT)) && data->m_iter > 100) 
 		data->m_iter -= 50;
+	get_colors(data);
 }
 
 static void	zoom(t_data *data, int k)

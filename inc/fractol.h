@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/03 13:30:39 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 20:36:59 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <libft.h>
 # define WIDTH 400 
 # define HEIGHT 400 
-# define M_ITER 100
+# define M_ITER 1000
 /* .h file of defines */
 # define COLORS 1
 # define COLORS_MASK 65536
@@ -56,6 +56,15 @@ typedef struct s_ncomplex {
 	long double	y;
 }				t_ncomplex;
 
+typedef struct s_color {
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+	float			ratio;
+	int				x;
+	int				normalized;
+}				t_color;
+
 /******************************************************************************/
 /* s_data is the struct that has data form manipulate the window and the image*/
 /* img contains an identifier of the image									  */
@@ -86,14 +95,14 @@ typedef struct	s_data {
 	long long int y;
 	void 	(*fractal)(struct s_data *data, int keycode);
 	int		*colors;
+	unsigned char	c_s;
 	t_sfsc	sfsc;
 	t_ncomplex C;
 }				t_data;
 
-//int				mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter);
 void			draw_mandelbrot(t_data *data, int keycode);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
-unsigned int 	rgb(int m_iter, double n);
+//int 			rgb(int m_iter, double n);
 void			draw_julia(t_data *data, int keycode);
 void			get_controls(int k, t_data *data);
 void			parse_args(int argc, char **argv, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 19:16:59 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/28 21:08:46 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/03 21:36:45 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ int	select_fractal_fnc(char **argv, t_data *data)
 		return (1);
 	return(0);
 }
+
+//float	atof(char *str)
+//{
+//	float ret;
+//
+//	ret = atoi(str);
+//	if (ft_strchr(str, '.'))
+//		
+//	
+//}
 
 void parse_args(int argc, char **argv, t_data *data)
 {
