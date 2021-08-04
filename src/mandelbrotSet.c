@@ -6,12 +6,21 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:30:40 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/03 18:06:49 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/04 22:27:08 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
+static void reset_values(t_data *data, t_ncomplex *Z, int *color, int x, int y)
+{
+	*color = 0x00000000; 
+	data->C.x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
+	data->C.y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
+	ft_memset(Z, 0, sizeof(t_ncomplex));
+}
+
+/* Z_0 = 0 */
 /* Zn = Zn_1^2 + C */ 
 static int mandelbrot(t_ncomplex *Z, t_ncomplex C, int i, int m_iter) 
 {
@@ -45,7 +54,8 @@ void	draw_mandelbrot(t_data *data, int keycode)
 		{
 			reset_values(data, &Z, &color, x, y);
 			ret = mandelbrot(&Z, data->C, 0, data->m_iter);
-			color = data->colors[ret - 1];
+			if (ret < (data->m_iter - 1))
+				color = data->colors[ret];
 			my_mlx_pixel_put(data, x, y, color);
 			y++;
 		}

@@ -6,7 +6,7 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/08/03 10:39:51 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/08/04 21:43:53 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ DEBUG 				=
 SRC_DIR				=	src/
 SRC					=	main.c mandelbrotSet.c get_params.c get_colors.c\
 						get_controls.c parse_args.c juliaSet.c my_mlx_pixel_put.c\
-						reset_values.c
+						 
 
 OBJ_DIR				=	obj/
 OBJ					= 	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))
@@ -60,6 +60,10 @@ else
 	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_mac -framework OpenGL -framework AppKit\
 		$(OBJ) Libft/libft.a libmlx.a -o $@ 
 endif
+
+test:	libmlx.a Libft/libft.a $(OBJ)
+	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_mac -framework OpenGL -framework AppKit\
+		$(OBJ) Libft/libft.a libmlx.a -o $@ 
 
 Libft/libft.a: 		 
 	$(MAKE) -C Libft

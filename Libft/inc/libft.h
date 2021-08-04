@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 20:03:14 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/28 19:56:16 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/04 19:48:01 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ char			*ft_itoa_base(long long unsigned int n, int base,
 char			*ft_strchrs(const char *str, char *set);
 int				ft_is_prime(int n);
 double			ft_dpower(double base, double power);
+double			ft_atof(char *str);
 
 #endif
