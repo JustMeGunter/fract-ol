@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 23:22:45 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/06 00:03:32 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	key_hook(int keycode, int x, int y, t_data *data)
 {
-	if (data->zoom > 50 && data->lock_zoom == 50)
-		data->zoom = 50;
 	get_colors(data);
 	data->x += (WIDTH * 0.5) - x;
 	data->y += (HEIGHT * 0.5) - y;
