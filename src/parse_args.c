@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 19:16:59 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 17:56:15 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 18:38:00 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	parse_args(int argc, char **argv, t_data *data)
 		printf("Enter one of the following sets:\nmandelbrot\njulia ");
 		printf("\nbonua_a\nbonus_b");
 		printf("\n**Julia can be followed by fractal parameters x y\n");
+		printf("**Parameters cant be longer than 8 digits and must be 2.\n");
 		exit(0);
 	}
 	if (argc > 2)
@@ -44,12 +45,5 @@ void	parse_args(int argc, char **argv, t_data *data)
 		if (argv[3])
 			if (ft_strlen(argv[3]) < 10)
 				data->C.y = ft_atof(argv[3]);
-		if ((!argv[2]
-				|| !argv[3])
-			&& !ft_strncmp(argv[1], "julia", ft_strlen(argv[1])))
-		{
-			printf("Parameters cant be longer than 10 digits and must be 2.");
-			exit(0);
-		}
 	}
 }

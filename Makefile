@@ -6,15 +6,15 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/08/05 17:53:35 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/08/05 18:10:00 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DEBUG 				=
 
 SRC_DIR				=	src/
-SRC					=	main.c mandelbrotSet.c get_params.c get_colors.c\
-						get_controls.c parse_args.c juliaSet.c my_mlx_pixel_put.c\
+SRC					=	main.c mandelbrot_set.c get_params.c get_colors.c\
+						get_controls.c parse_args.c julia_set.c my_mlx_pixel_put.c\
 						bonus_a.c bonus_b.c						 
 
 OBJ_DIR				=	obj/
