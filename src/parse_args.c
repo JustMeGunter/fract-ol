@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 19:16:59 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 13:06:20 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 17:56:15 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static int	select_fractal_fnc(char **argv, t_data *data)
 		data->fractal = draw_mandelbrot;
 	else if (argv[1] && !ft_strncmp(argv[1], "julia", ft_strlen(argv[1])))
 		data->fractal = draw_julia;
+	else if (argv[1] && !ft_strncmp(argv[1], "bonus_a", ft_strlen(argv[1])))
+		data->fractal = draw_bonus_a;
+	else if (argv[1] && !ft_strncmp(argv[1], "bonus_b", ft_strlen(argv[1])))
+		data->fractal = draw_bonus_b;
 	else
 		return (1);
 	return (0);
@@ -28,6 +32,7 @@ void	parse_args(int argc, char **argv, t_data *data)
 	if (argc < 2 || select_fractal_fnc(argv, data))
 	{
 		printf("Enter one of the following sets:\nmandelbrot\njulia ");
+		printf("\nbonua_a\nbonus_b");
 		printf("\n**Julia can be followed by fractal parameters x y\n");
 		exit(0);
 	}

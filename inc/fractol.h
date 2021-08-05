@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 13:22:37 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 17:50:32 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ typedef struct s_data {
 }				t_data;
 
 void			draw_mandelbrot(t_data *data, int keycode);
+void			draw_bonus_a(t_data *data, int keycode);
+void			draw_bonus_b(t_data *data, int keycode);
 void			get_sfsc(int x, int y, t_sfsc *sfsc);
 void			draw_julia(t_data *data, int keycode);
 void			get_controls(int k, t_data *data);
