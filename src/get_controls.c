@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/03 21:06:54 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 11:02:50 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,48 +37,48 @@ static void	change_iter(t_data *data, int k)
 	free(data->colors);
 	if ((k == (K_MASK | ITER_MASK | I_IN)) && data->m_iter < 5000)
 		data->m_iter += 50;
-	if ((k == (K_MASK | ITER_MASK | I_OUT)) && data->m_iter > 100) 
+	if ((k == (K_MASK | ITER_MASK | I_OUT)) && data->m_iter > 100)
 		data->m_iter -= 50;
 	get_colors(data);
 }
 
 static void	zoom(t_data *data, int k)
 {
-	long long int x_t;
-	long long int y_t;
+	long long int	x_t;
+	long long int	y_t;
 
-	if (k == (M_MASK | Z_OUT))	
+	if (k == (M_MASK | Z_OUT))
 	{
 		data->sfsc.scld_x = data->sfsc.scld_x * 2.0;
 		data->sfsc.scld_y = data->sfsc.scld_y * 2.0;
 		data->x *= 0.5;
 		data->y *= 0.5;
 	}
-	else if (k == (M_MASK | Z_IN))	
+	else if (k == (M_MASK | Z_IN))
 	{
-		x_t = data->x * 2;	
-		y_t = data->y * 2;	
-		if (((data->x >= 0 && x_t >= 0) ||
-				(data->x <= 0 && x_t <= 0)) &&
-					((data->y >= 0 && y_t >= 0) ||
-						(data->y <= 0 && y_t <= 0 )))
-			{
-				data->sfsc.scld_y = data->sfsc.scld_y * 0.5;
-				data->y *= 2;
-				data->sfsc.scld_x = data->sfsc.scld_x * 0.5;
-				data->x *= 2;
-			}
+		x_t = data->x * 2;
+		y_t = data->y * 2;
+		if (((data->x >= 0 && x_t >= 0)
+				|| (data->x <= 0 && x_t <= 0))
+			&& ((data->y >= 0 && y_t >= 0)
+				|| (data->y <= 0 && y_t <= 0 )))
+		{
+			data->sfsc.scld_y = data->sfsc.scld_y * 0.5;
+			data->y *= 2;
+			data->sfsc.scld_x = data->sfsc.scld_x * 0.5;
+			data->x *= 2;
+		}
 	}
 }
 
-void	get_controls (int keycode, t_data *data)
+void	get_controls(int keycode, t_data *data)
 {
 	if ((keycode & (K_MASK | COLORS_MASK)) == (K_MASK | COLORS_MASK))
 		shift_colors(data, keycode);
 	else if ((keycode & (K_MASK | ITER_MASK)) == (K_MASK | ITER_MASK))
 		change_iter(data, keycode);
-	else if ((keycode & K_MASK) == K_MASK) 
+	else if ((keycode & K_MASK) == K_MASK)
 		arrows_move(data, keycode);
-	else if ((keycode & M_MASK) == M_MASK) 
+	else if ((keycode & M_MASK) == M_MASK)
 		zoom(data, keycode);
 }

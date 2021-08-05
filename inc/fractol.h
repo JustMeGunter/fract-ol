@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/04 21:38:15 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 11:27:08 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define WIDTH 400 
 # define HEIGHT 400 
 # define M_ITER 1000
-/* .h file of defines */
 # define COLORS 1
 # define COLORS_MASK 65536
 # define ITER 2
@@ -56,10 +55,11 @@ typedef struct s_ncomplex {
 	long double	y;
 }				t_ncomplex;
 
+/* struct with data to operate with colors */
 typedef struct s_color {
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 	float			ratio;
 	int				x;
 	int				normalized;
@@ -79,25 +79,27 @@ typedef struct s_color {
 /* x contains coord to use in controls										  */
 /* y contains coord to use in controls										  */
 /* (* fractal) the function of the fractal type								  */
+/* *colors is palette of colors												  */
+/* c_s contais the color shift												  */
 /* sfsc has the shifted and scaled of the iamge 							  */
 /* C complex number for fractal sets										  */
 /******************************************************************************/
-typedef struct	s_data {
-	void	*img;
-	void	*win;
-	void	*mlx;
-	char	*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-	int		m_iter;
-	long long int x;
-	long long int y;
-	void 	(*fractal)(struct s_data *data, int keycode);
-	int		*colors;
+typedef struct s_data {
+	void			*img;
+	void			*win;
+	void			*mlx;
+	char			*addr;
+	int				bits_per_pixel;
+	int				size_line;
+	int				endian;
+	int				m_iter;
+	long long int	x;
+	long long int	y;
+	void			(*fractal)(struct s_data *data, int keycode);
+	int				*colors;
 	unsigned char	c_s;
-	t_sfsc	sfsc;
-	t_ncomplex C;
+	t_sfsc			sfsc;
+	t_ncomplex		C;
 }				t_data;
 
 void			draw_mandelbrot(t_data *data, int keycode);

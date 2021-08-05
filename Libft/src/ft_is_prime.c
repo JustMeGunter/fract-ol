@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 19:30:00 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/22 20:08:46 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 11:29:49 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	ft_is_prime(int n)
 	int	i;
 
 	i = 1;
-	while(++i < n)
-		if (n % i == 0) 	
+	while (++i < n)
+		if (n % i == 0)
 			return (0);
 	return (1);
 }

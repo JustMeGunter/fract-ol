@@ -6,7 +6,7 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/08/04 21:43:53 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/08/05 11:17:53 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,10 +60,6 @@ else
 	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_mac -framework OpenGL -framework AppKit\
 		$(OBJ) Libft/libft.a libmlx.a -o $@ 
 endif
-
-test:	libmlx.a Libft/libft.a $(OBJ)
-	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_mac -framework OpenGL -framework AppKit\
-		$(OBJ) Libft/libft.a libmlx.a -o $@ 
 
 Libft/libft.a: 		 
 	$(MAKE) -C Libft

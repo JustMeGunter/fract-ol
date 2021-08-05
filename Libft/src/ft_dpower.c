@@ -6,15 +6,15 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:45:59 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/28 19:54:43 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 11:28:49 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double ft_dpower(double base, double power)
+double	ft_dpower(double base, double power)
 {
-	double n_aux;
+	double	n_aux;
 
 	if (!base)
 		return (1);

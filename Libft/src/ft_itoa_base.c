@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:49:12 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/03 19:04:17 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 11:28:15 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ char	*ft_itoa_base(long long unsigned int n, int base, char *elm_base)
 	int				i;
 
 	i = ft_ndigit(n, base);
-//	if (n < 0)
-//	{
-//		nn = -n;
-//		i++;
-//	}
-//	else
 	nn = n;
 	if (nn == 0)
 		nn = -1;

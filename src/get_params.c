@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 20:22:12 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/07/24 21:01:42 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 11:03:34 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	get_sfsc(int x, int y, t_sfsc *sfsc)
 {
-	sfsc->shftd_x =  x / 2.0;
-	sfsc->shftd_y =  y / 2.0;
+	sfsc->shftd_x = x / 2.0;
+	sfsc->shftd_y = y / 2.0;
 	sfsc->scld_x = 4.0 / x;
 	sfsc->scld_y = 4.0 / y;
 }

@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/04 21:20:18 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 11:10:12 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static int	keyboard_hook(int keycode, t_data *data)
 		exit(0);
 	get_colors(data);
 	if (((keycode & MASK) == C_IN) || ((keycode & MASK) == C_OUT))
-		keycode |= COLORS << 16; 
+		keycode |= COLORS << 16;
 	else if (((keycode & MASK) == I_IN) || ((keycode & MASK) == I_OUT))
-		keycode |= ITER << 16; 
+		keycode |= ITER << 16;
 	data->fractal(data, keycode | K << 8);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	free(data->colors);
-	return(1);
+	return (1);
 }
 
 int	main(int argc, char **argv)
