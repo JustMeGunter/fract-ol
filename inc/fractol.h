@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 20:13:35 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 22:44:39 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ typedef struct s_color {
 /* (* fractal) the function of the fractal type								  */
 /* *colors is palette of colors												  */
 /* c_s contais the color shift												  */
+/* i_c cointains boolean for invert colors									  */
+/* b_color contains base color												  */
+/* zoom contains the zoom depth												  */
+/* lock_zoom contains boolean for check the lock state					 	  */
 /* sfsc has the shifted and scaled of the iamge 							  */
 /* C complex number for fractal sets										  */
 /******************************************************************************/
@@ -102,6 +106,8 @@ typedef struct s_data {
 	unsigned char	c_s;
 	unsigned char	i_c;
 	int				b_color;
+	int				zoom;
+	int				lock_zoom;
 	t_sfsc			sfsc;
 	t_ncomplex		C;
 }				t_data;

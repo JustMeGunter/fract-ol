@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 13:23:28 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 22:16:55 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	key_hook(int keycode, int x, int y, t_data *data)
 {
+	printf("%i\n", data->zoom);
 	get_colors(data);
 	data->x += (WIDTH * 0.5) - x;
 	data->y += (HEIGHT * 0.5) - y;
@@ -44,6 +45,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	ft_memset(&data, 0, sizeof(t_data));
+	data.lock_zoom = 50;
 	parse_args(argc, argv, &data);
 	get_sfsc(WIDTH, HEIGHT, &data.sfsc);
 	data.m_iter = M_ITER;

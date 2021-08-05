@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 19:16:59 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 21:22:39 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 22:21:44 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ static int	digit_parser(char *str1, char *str2)
 	return (0);
 }
 
+static void	unlock_zoom(char **argv, int argc, t_data *data)
+{
+	while (--argc)
+		if (ft_strcmp(argv[argc], "unlock"))
+			data->lock_zoom = 99999999;
+}
+
 void	parse_args(int argc, char **argv, t_data *data)
 {
 	if (argc < 2 || select_fractal_fnc(argv, data))
@@ -80,5 +87,6 @@ void	parse_args(int argc, char **argv, t_data *data)
 				if (ft_strlen(argv[3]) < 10)
 					data->C.y = ft_atof(argv[3]);
 		}
+		unlock_zoom(argv, argc, data);
 	}
 }
