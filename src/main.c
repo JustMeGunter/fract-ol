@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 22:16:55 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 23:22:45 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	key_hook(int keycode, int x, int y, t_data *data)
 {
-	printf("%i\n", data->zoom);
+	if (data->zoom > 50 && data->lock_zoom == 50)
+		data->zoom = 50;
 	get_colors(data);
 	data->x += (WIDTH * 0.5) - x;
 	data->y += (HEIGHT * 0.5) - y;
@@ -45,19 +46,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	ft_memset(&data, 0, sizeof(t_data));
-	data.lock_zoom = 50;
-	parse_args(argc, argv, &data);
-	get_sfsc(WIDTH, HEIGHT, &data.sfsc);
-	data.m_iter = M_ITER;
-	data.c_s = 255;
-	data.b_color = 0x00000000;
-	data.i_c = 1;
-	get_colors(&data);
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "fract-ol");
-	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
-			&data.size_line, &data.endian);
+	load_data(&data, argc, argv);
 	data.fractal(&data, 0);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_key_hook(data.win, keyboard_hook, &data);

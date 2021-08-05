@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 22:44:39 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 23:06:43 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,6 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			add_complex(t_ncomplex n1, t_ncomplex n2, t_ncomplex *ret);
 void			pow_complex(t_ncomplex n1, t_ncomplex *ret);
 void			get_colors(t_data *data);
+void			load_data(t_data *data, int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 22:32:35 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 22:51:19 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	zoom(t_data *data, int k)
 	unsigned long int	x_t;
 	unsigned long int	y_t;
 
-	if ((k == (M_MASK | Z_OUT)) && data->zoom &&data->zoom--)
+	if ((k == (M_MASK | Z_OUT)) && data->zoom && data->zoom--)
 	{
 		data->sfsc.scld_x = data->sfsc.scld_x * 2.0;
 		data->sfsc.scld_y = data->sfsc.scld_y * 2.0;
