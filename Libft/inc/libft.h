@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 20:03:14 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/04 19:48:01 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 19:33:17 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ char			*ft_strchrs(const char *str, char *set);
 int				ft_is_prime(int n);
 double			ft_dpower(double base, double power);
 double			ft_atof(char *str);
+int				ft_strcmp(const char *s1, const char *s2);
 
 #endif
