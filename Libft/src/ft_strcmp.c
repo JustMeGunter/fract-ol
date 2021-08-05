@@ -6,13 +6,13 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 19:17:11 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 19:38:12 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 19:58:12 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i])
