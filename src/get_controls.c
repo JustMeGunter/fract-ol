@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 13:18:41 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 20:36:46 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	change_iter(t_data *data, int k)
 
 static void	zoom(t_data *data, int k)
 {
-	long long int	x_t;
-	long long int	y_t;
+	unsigned long int	x_t;
+	unsigned long int	y_t;
 
 	if (k == (M_MASK | Z_OUT))
 	{

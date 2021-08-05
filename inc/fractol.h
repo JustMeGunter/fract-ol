@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 18:52:12 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 20:13:35 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <libft.h>
+# include <limits.h>
 # define WIDTH 400 
 # define HEIGHT 400 
 # define M_ITER 100

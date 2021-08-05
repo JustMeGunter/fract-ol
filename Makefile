@@ -6,7 +6,7 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/08/05 18:45:29 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/08/05 21:00:24 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SANITIZE			=	-fsanitize=address
 
 OPTIMIZED			=	-O0
 
-CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) 
+CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) -g 
 
 UNAME_S := $(shell uname -s)
 
