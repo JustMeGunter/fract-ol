@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 11:02:50 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 13:18:41 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,15 @@ static void	shift_colors(t_data *data, int k)
 {
 	if (data->c_s > 5 && (k & C_OUT) == C_OUT)
 		data->c_s -= 5;
-	if (data->c_s < 250 && (k & C_IN) == C_IN)
+	else if (data->c_s < 250 && (k & C_IN) == C_IN)
 		data->c_s += 5;
+	else if ((k & I_C) == I_C)
+	{
+		if (data->i_c)
+			data->i_c = 0;
+		else
+			data->i_c = 1;
+	}
 }
 
 static void	change_iter(t_data *data, int k)

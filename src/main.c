@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 11:10:12 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 13:23:28 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	keyboard_hook(int keycode, t_data *data)
 	if (keycode == ESC)
 		exit(0);
 	get_colors(data);
-	if (((keycode & MASK) == C_IN) || ((keycode & MASK) == C_OUT))
+	if (((keycode & MASK) == C_IN) || ((keycode & MASK) == C_OUT)
+		|| ((keycode & MASK) == I_C))
 		keycode |= COLORS << 16;
 	else if (((keycode & MASK) == I_IN) || ((keycode & MASK) == I_OUT))
 		keycode |= ITER << 16;
@@ -47,6 +48,8 @@ int	main(int argc, char **argv)
 	get_sfsc(WIDTH, HEIGHT, &data.sfsc);
 	data.m_iter = M_ITER;
 	data.c_s = 255;
+	data.b_color = 0x00000000;
+	data.i_c = 1;
 	get_colors(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "fract-ol");

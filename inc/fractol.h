@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 11:27:08 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 13:22:37 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define C_OUT 7
 # define I_IN 24
 # define I_OUT 27
+# define I_C 6 
 # define ESC 53
 # define K 107
 # define K_MASK 27392
@@ -98,6 +99,8 @@ typedef struct s_data {
 	void			(*fractal)(struct s_data *data, int keycode);
 	int				*colors;
 	unsigned char	c_s;
+	unsigned char	i_c;
+	int				b_color;
 	t_sfsc			sfsc;
 	t_ncomplex		C;
 }				t_data;

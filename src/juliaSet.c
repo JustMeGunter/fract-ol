@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 21:13:36 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 11:08:55 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 13:24:18 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	reset_values(t_data *data, t_ncomplex *Z, int x, int y)
 {
+	data->b_color = 0x00000000;
 	Z->x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
 	Z->y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
 }
@@ -39,7 +40,6 @@ void	draw_julia(t_data *data, int keycode)
 {
 	int			x;
 	int			y;
-	int			color;
 	int			ret;
 	t_ncomplex	Z;
 
@@ -50,12 +50,13 @@ void	draw_julia(t_data *data, int keycode)
 	{
 		while (y < HEIGHT)
 		{
-			color = 0x00000000;
-			reset_values(data, &Z, &color, x, y);
+			reset_values(data, &Z, x, y);
 			ret = julia(&Z, data->C, 0, data->m_iter);
-			if (ret < (data->m_iter - 1))
-				color = data->colors[ret];
-			my_mlx_pixel_put(data, x, y, color);
+			if (ret < (data->m_iter - 1) && !data->i_c)
+				data->b_color = 0x00FFFFFF - data->colors[ret];
+			else if (ret < (data->m_iter - 1) && data->i_c)
+				data->b_color = data->colors[ret];
+			my_mlx_pixel_put(data, x, y, data->b_color);
 			y++;
 		}
 		y = 0;
