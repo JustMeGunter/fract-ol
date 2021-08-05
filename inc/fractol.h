@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 17:50:32 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/08/05 18:52:12 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <libft.h>
 # define WIDTH 400 
 # define HEIGHT 400 
-# define M_ITER 1000
+# define M_ITER 100
 # define COLORS 1
 # define COLORS_MASK 65536
 # define ITER 2
