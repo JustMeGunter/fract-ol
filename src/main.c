@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:15:09 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/06 00:03:32 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/09/05 19:50:45 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static int	key_hook(int keycode, int x, int y, t_data *data)
 
 static int	keyboard_hook(int keycode, t_data *data)
 {
-	printf("%i\n", keycode);
-	if (keycode == 65307)
+	if (keycode == ESC)
 		exit(0);
 	get_colors(data);
 	if (((keycode & MASK) == C_IN) || ((keycode & MASK) == C_OUT)
