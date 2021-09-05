@@ -88,7 +88,7 @@ typedef struct s_color {
 /* zoom contains the zoom depth												  */
 /* lock_zoom contains boolean for check the lock state					 	  */
 /* sfsc has the shifted and scaled of the iamge 							  */
-/* C complex number for fractal sets										  */
+/* c complex number for fractal sets										  */
 /******************************************************************************/
 typedef struct s_data {
 	void			*img;
@@ -109,7 +109,7 @@ typedef struct s_data {
 	int				zoom;
 	int				lock_zoom;
 	t_sfsc			sfsc;
-	t_ncomplex		C;
+	t_ncomplex		c;
 }				t_data;
 
 void			draw_mandelbrot(t_data *data, int keycode);

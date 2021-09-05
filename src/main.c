@@ -25,7 +25,8 @@ static int	key_hook(int keycode, int x, int y, t_data *data)
 
 static int	keyboard_hook(int keycode, t_data *data)
 {
-	if (keycode == ESC)
+	printf("%i\n", keycode);
+	if (keycode == 65307)
 		exit(0);
 	get_colors(data);
 	if (((keycode & MASK) == C_IN) || ((keycode & MASK) == C_OUT)
@@ -46,6 +47,7 @@ int	main(int argc, char **argv)
 	ft_memset(&data, 0, sizeof(t_data));
 	load_data(&data, argc, argv);
 	data.fractal(&data, 0);
+	free(data.colors);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_key_hook(data.win, keyboard_hook, &data);
 	mlx_mouse_hook(data.win, key_hook, &data);

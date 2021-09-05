@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/27 19:16:59 by acrucesp          #+#    #+#             */
+/*   created: 2021/07/27 19:16:59 by acrucesp          #+#    #+#             */
 /*   Updated: 2021/08/05 23:13:11 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -82,10 +82,10 @@ void	parse_args(int argc, char **argv, t_data *data)
 		{
 			if (argv[2])
 				if (ft_strlen(argv[2]) < 10)
-					data->C.x = ft_atof(argv[2]);
+					data->c.x = ft_atof(argv[2]);
 			if (argv[3])
 				if (ft_strlen(argv[3]) < 10)
-					data->C.y = ft_atof(argv[3]);
+					data->c.y = ft_atof(argv[3]);
 		}
 		unlock_zoom(argv, argc, data);
 	}

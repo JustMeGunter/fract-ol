@@ -31,9 +31,9 @@ RM					= 	rm -f
 
 SANITIZE			=	-fsanitize=address
 
-OPTIMIZED			=	-O3
+OPTIMIZED			=	
 
-CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) 
+CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) $(DEBUG)
 
 UNAME_S := $(shell uname -s)
 

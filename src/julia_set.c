@@ -5,33 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/27 21:13:36 by acrucesp          #+#    #+#             */
+/*   created: 2021/07/27 21:13:36 by acrucesp          #+#    #+#             */
 /*   Updated: 2021/08/05 13:24:18 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-static void	reset_values(t_data *data, t_ncomplex *Z, int x, int y)
+static void	reset_values(t_data *data, t_ncomplex *z, int x, int y)
 {
 	data->b_color = 0x00000000;
-	Z->x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
-	Z->y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
+	z->x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
+	z->y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
 }
 
-/* Z_0 = x + yi 	*/
-/* Zn = Zn_1^2 + C 	*/
-static int	julia(t_ncomplex *Z, t_ncomplex C, int i, int m_iter)
+/* z_0 = x + yi 	*/
+/* zn = zn_1^2 + c 	*/
+static int	julia(t_ncomplex *z, t_ncomplex c, int i, int m_iter)
 {
 	long double	t;
 
-	if (Z->x * Z->x + Z->y * Z->y <= 4 && i < m_iter)
+	if (z->x * z->x + z->y * z->y <= 4 && i < m_iter)
 	{
-		t = Z->x * Z->x - Z->y * Z->y + C.x;
-		Z->y = 2.0 * Z->x * Z->y + C.y;
-		Z->x = t;
+		t = z->x * z->x - z->y * z->y + c.x;
+		z->y = 2.0 * z->x * z->y + c.y;
+		z->x = t;
 		i++;
-		return (julia(Z, C, i, m_iter));
+		return (julia(z, c, i, m_iter));
 	}
 	return (i);
 }
@@ -41,7 +41,7 @@ void	draw_julia(t_data *data, int keycode)
 	int			x;
 	int			y;
 	int			ret;
-	t_ncomplex	Z;
+	t_ncomplex	z;
 
 	x = 0;
 	y = 0;
@@ -50,8 +50,8 @@ void	draw_julia(t_data *data, int keycode)
 	{
 		while (y < HEIGHT)
 		{
-			reset_values(data, &Z, x, y);
-			ret = julia(&Z, data->C, 0, data->m_iter);
+			reset_values(data, &z, x, y);
+			ret = julia(&z, data->c, 0, data->m_iter);
 			if (ret < (data->m_iter - 1) && !data->i_c)
 				data->b_color = 0x00FFFFFF - data->colors[ret];
 			else if (ret < (data->m_iter - 1) && data->i_c)

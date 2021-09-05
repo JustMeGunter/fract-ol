@@ -5,34 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 17:53:22 by acrucesp          #+#    #+#             */
+/*   created: 2021/08/05 17:53:22 by acrucesp          #+#    #+#             */
 /*   Updated: 2021/08/05 18:00:37 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-static void	reset_values(t_data *data, t_ncomplex *Z, int x, int y)
+static void	reset_values(t_data *data, t_ncomplex *z, int x, int y)
 {
 	data->b_color = 0x00000000;
-	data->C.x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
-	data->C.y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
-	ft_memset(Z, 0, sizeof(t_ncomplex));
+	data->c.x = (x - data->x - data->sfsc.shftd_x) * data->sfsc.scld_x;
+	data->c.y = (-y + data->y + data->sfsc.shftd_y) * data->sfsc.scld_y;
+	ft_memset(z, 0, sizeof(t_ncomplex));
 }
 
-/* Z_0 = 0			*/
-/* Zn = Zn_1^3 + C 	*/
-static int	bonus(t_ncomplex *Z, t_ncomplex C, int i, int m_iter)
+/* z_0 = 0			*/
+/* zn = zn_1^3 + c 	*/
+static int	bonus(t_ncomplex *z, t_ncomplex c, int i, int m_iter)
 {
 	long double	t;
 
-	if (Z->x * Z->x + Z->y * Z->y <= 4 && i < m_iter)
+	if (z->x * z->x + z->y * z->y <= 4 && i < m_iter)
 	{
-		t = (Z->x * Z->x * Z->x) - (3.0L * Z->x * (Z->y * Z->y)) + C.x;
-		Z->y = (3.0L * (Z->x * Z->x) * Z->y) - (Z->y * Z->y * Z->y) + C.y;
-		Z->x = t;
+		t = (z->x * z->x * z->x) - (3.0L * z->x * (z->y * z->y)) + c.x;
+		z->y = (3.0L * (z->x * z->x) * z->y) - (z->y * z->y * z->y) + c.y;
+		z->x = t;
 		i++;
-		return (bonus(Z, C, i, m_iter));
+		return (bonus(z, c, i, m_iter));
 	}
 	return (i);
 }
@@ -42,7 +42,7 @@ void	draw_bonus_b(t_data *data, int keycode)
 	int			x;
 	int			y;
 	int			ret;
-	t_ncomplex	Z;
+	t_ncomplex	z;
 
 	x = 0;
 	y = 0;
@@ -51,8 +51,8 @@ void	draw_bonus_b(t_data *data, int keycode)
 	{
 		while (y < HEIGHT)
 		{
-			reset_values(data, &Z, x, y);
-			ret = bonus(&Z, data->C, 0, data->m_iter);
+			reset_values(data, &z, x, y);
+			ret = bonus(&z, data->c, 0, data->m_iter);
 			if (ret < (data->m_iter - 1) && !data->i_c)
 				data->b_color = 0x00FFFFFF - data->colors[ret];
 			else if (ret < (data->m_iter - 1) && data->i_c)
