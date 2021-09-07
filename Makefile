@@ -6,7 +6,7 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/08/06 00:02:49 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/09/07 21:55:06 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,15 @@ RM					= 	rm -f
 
 SANITIZE			=	-fsanitize=address
 
-OPTIMIZED			=	
+OPTIMIZED			=	-O3	
 
-CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) $(DEBUG)
+CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) $(DEBUG) 
 
 UNAME_S := $(shell uname -s)
 
 all:				$(NAME)
+
+bonus:				all
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 ifeq ($(UNAME_S), Linux)
@@ -51,7 +53,6 @@ $(OBJ): | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-#fix recompile objects Libft
 $(NAME):	libmlx.a Libft/libft.a $(OBJ) 
 ifeq ($(UNAME_S), Linux)
 	$(CC) $(CFLAGS) -I Libft/inc/ -I inc/ -Imlx_linux -lXext -lX11 -lm -lz\

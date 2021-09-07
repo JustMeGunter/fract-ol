@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 23:06:43 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/09/07 20:12:53 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ typedef struct s_data {
 	int				size_line;
 	int				endian;
 	int				m_iter;
-	long long int	x;
-	long long int	y;
+	long double		x;
+	long double		y;
 	void			(*fractal)(struct s_data *data, int keycode);
 	int				*colors;
 	unsigned char	c_s;
