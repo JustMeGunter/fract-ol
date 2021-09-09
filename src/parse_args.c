@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 20:36:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/09/07 21:47:37 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/09/09 21:58:41 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	iter_digit_parser(char *str)
 	i = -1;
 	s = 0;
 	p = 0;
-	if (str[0] == '\0')
+	if (!str && str[0] == '\0')
 		return (0);
 	while (str[++i])
 	{
@@ -78,7 +78,7 @@ void	parse_args(int argc, char **argv, t_data *data)
 		printf("**Parameters cant be longer than 8 chars and must be 2.\n");
 		exit(0);
 	}
-	if (argc > 2)
+	if (argc == 3 && argv[2] && argv[3])
 	{
 		if (digit_parser(argv[2], argv[3]))
 		{
