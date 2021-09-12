@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 03:05:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/09/07 20:12:53 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/09/12 18:44:14 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include <mlx.h>
+# include "../mlx_mac/mlx.h"
 # include <libft.h>
 # include <limits.h>
 # define WIDTH 400 
@@ -107,7 +107,6 @@ typedef struct s_data {
 	unsigned char	i_c;
 	int				b_color;
 	int				zoom;
-	int				lock_zoom;
 	t_sfsc			sfsc;
 	t_ncomplex		c;
 }				t_data;

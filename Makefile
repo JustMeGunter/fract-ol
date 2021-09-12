@@ -6,11 +6,11 @@
 #    By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/27 02:44:28 by acrucesp          #+#    #+#              #
-#    Updated: 2021/09/09 21:59:55 by acrucesp         ###   ########.fr        #
+#    Updated: 2021/09/12 18:56:58 by acrucesp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DEBUG 				=
+D	 				=
 
 SRC_DIR				=	src/
 SRC					=	main.c mandelbrot_set.c get_params.c get_colors.c\
@@ -29,11 +29,11 @@ CC					=	gcc
 
 RM					= 	rm -f
 
-SANITIZE			=	-fsanitize=address
+S					=	-fsanitize=address
 
 OPTIMIZED			=	-O3	
 
-CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) $(DEBUG)
+CFLAGS				= 	-Wall -Wextra -Werror $(OPTIMIZED) $(D)
 
 UNAME_S := $(shell uname -s)
 

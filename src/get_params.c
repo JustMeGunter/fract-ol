@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 20:22:12 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/08/05 23:13:08 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/09/12 18:16:35 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	get_sfsc(int x, int y, t_sfsc *sfsc)
 
 void	load_data(t_data *data, int argc, char **argv)
 {
-	data->lock_zoom = 50;
 	parse_args(argc, argv, data);
 	get_sfsc(WIDTH, HEIGHT, &data->sfsc);
 	data->m_iter = M_ITER;

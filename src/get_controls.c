@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 20:36:46 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/09/07 20:09:38 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/09/12 18:47:51 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	zoom(t_data *data, int k)
 		data->x *= 0.5;
 		data->y *= 0.5;
 	}
-	else if (k == (M_MASK | Z_IN) && data->zoom < data->lock_zoom)
+	else if (k == (M_MASK | Z_IN))
 	{
 		data->zoom++;
 		data->sfsc.scld_y = data->sfsc.scld_y * 0.5;
@@ -67,6 +67,7 @@ static void	zoom(t_data *data, int k)
 		data->sfsc.scld_x = data->sfsc.scld_x * 0.5;
 		data->x *= 2;
 	}
+	mlx_mouse_move(data->win, WIDTH / 2, HEIGHT / 2);
 }
 
 void	get_controls(int keycode, t_data *data)

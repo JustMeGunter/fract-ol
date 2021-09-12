@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 20:36:43 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/09/09 21:58:41 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/09/12 18:47:20 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,6 @@ static int	digit_parser(char *str1, char *str2)
 	return (0);
 }
 
-static void	unlock_zoom(char **argv, int argc, t_data *data)
-{
-	while (--argc)
-		if (ft_strcmp(argv[argc], "unlock"))
-			data->lock_zoom = 99999999;
-}
-
 void	parse_args(int argc, char **argv, t_data *data)
 {
 	if (argc < 2 || select_fractal_fnc(argv, data))
@@ -78,7 +71,8 @@ void	parse_args(int argc, char **argv, t_data *data)
 		printf("**Parameters cant be longer than 8 chars and must be 2.\n");
 		exit(0);
 	}
-	if (argc == 3 && argv[2] && argv[3])
+	if (argc > 3 && argv[2] && argv[3] && argv[2][0] != '\0'
+			&& argv[3][0] != '\0')
 	{
 		if (digit_parser(argv[2], argv[3]))
 		{
@@ -89,6 +83,5 @@ void	parse_args(int argc, char **argv, t_data *data)
 				if (ft_strlen(argv[3]) < 10)
 					data->c.y = ft_atof(argv[3]);
 		}
-		unlock_zoom(argv, argc, data);
 	}
 }
